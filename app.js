@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 
-const RestAPI = require("./router/rout.js");
+const RestAPI = require("./router/rout");
 const dbAPI = require("./controllers/controller")
 
 const hostname = '127.0.0.1';
@@ -18,7 +18,7 @@ app.use(helmet());
 
 
 app.use(express.static('public'));
-app.use('./router', RestAPI);
+app.use('/router', RestAPI);
 
 
 
