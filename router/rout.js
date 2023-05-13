@@ -42,23 +42,11 @@ function CheckLogin(req,res,next){
     }
 }
 
-function CheckComments(req,res,next){
-    if (!req.body.name){
-        res.send("Пустое тело");
-    } else {
-        next();
-    }
-}
 
 router.post('/login', jsonParser, CheckLogin, (req,res) => {
     res.status(228).send(`Welcome, ${user.name}`);
 })
 
-router.post('/comments', jsonParser, CheckComments, (req, res) => {
-    comments.push(req.body);
-    res.status(200).json(comments);
-  
-})
 
 router.post('/authorization', CheckAuthorization, (req,res) => {
     res.status(215).send("Авторизация пройдена");

@@ -1,20 +1,42 @@
-const MongoClient = require('mongodb').MongoClient;
+const { ObjectId } = require("mongodb");
+const connectToMongoDB = require("../configs/config.js");
 
-async function connectToMongoDB() {
-    try {
-      const uri = "mongodb://127.0.0.1:27017/db";
-      const client = new MongoClient(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-      await client.connect();
-      console.log("Connected to MongoDB!");
-      const db = client.db("RK");
-      return db;
-    } catch (error) {
-      console.error("Error connecting to MongoDB:", error);
-      process.exit(1);
-    }
-  }
-  
-  module.exports = connectToMongoDB;
+let db;
+
+connectToMongoDB() //пример промиса
+  .then((result) => {
+    db = result;
+  })
+  .catch((err) => console.log(err));
+
+console.log(db);
+
+async function insertComment(data) {
+  const comments = db.collection("comments");
+  await comments.insertOne(data);
+}
+
+async function findComments() {
+  const comments = db.collection("comments");
+  const result = await comments.find();
+  return result.toArray();
+}
+
+async function findComment(id) {
+  const comments = db.collection("comments");
+  const result = await comments.findOne({ _id: new ObjectId(id) });
+  return result;
+}
+
+async function findName(name) {
+  const comments = db.collection("comments");
+  const result = await comments.findOne({ name });
+  return result;
+}
+
+module.exports = {
+  insertComment,
+  findComments,
+  findComment,
+  findName,
+};
