@@ -1,3 +1,39 @@
+GET /router/ HTTP/1.1
+Host: 127.0.0.1:5500
 ###
 GET /router/allOrders HTTP/1.1
 Host: 127.0.0.1:5500
+###
+GET /router/orders/ HTTP/1.1
+Host: 127.0.0.1:3000
+
+###
+POST /router/orders HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/json
+
+{
+  "name": "Cat", // имя модели
+    "priority": "normal", // cрочность: обычный, срочный
+    "material": "abs "// Вид пластика: PLA, ABS
+}
+
+###
+GET /router/orders?sort=normal HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/json
+
+###
+POST /router/authorization?apiKey=secret HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/json
+
+###
+POST /router/login HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/json
+
+{
+    "name": "sonya",
+     "email": "sofaelison@gmail.com"
+}

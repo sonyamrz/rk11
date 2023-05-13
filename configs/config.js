@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 async function connectToMongoDB() {
     try {
-      const uri = "mongodb://127.0.0.1:27017/RK";
+      const uri = "mongodb://127.0.0.1:27017";
       const client = new MongoClient(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,

@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 router.get("/allOrders", commentsController.getAllComments);
 router.get("/orders/:id", commentsController.getComment);
 router.post("/orders", express.json(), commentsController.postAddComments);
-router.get("/orders", commentsController.getCommentByName);
+router.get("/orders", commentsController.getOrderByName);
 
 
 function CheckLogin(req,res,next){

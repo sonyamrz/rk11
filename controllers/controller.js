@@ -4,7 +4,7 @@ const { ObjectId } = require('mongodb');
 async function getAllComments(req, res) {
   let allComments = await commentServices.findComments()
   res.json(allComments)
-}controllers/controller.js
+}
 
 async function getComment(req, res) {
   if (ObjectId.isValid(req.params.id)) {
